@@ -22,16 +22,18 @@ idx = zeros(size(X,1), 1);
 %
 
 for i=1:size(X, 1)
-	nearest_i = inf
+	sample_i = X(i, :);
+	min_dist = inf;
 	for j = 1:K
-	end
-end
-
-
-
-
-
-
+		centroid_j = centroids(j, :);
+		diff = centroid_j - sample_i;
+		dist = diff * diff'; % square euclidian distance
+		if (dist < min_dist)		
+			min_dist = dist;
+			idx(i) = j;
+		end
+	end % for all centroids
+end % for all samples
 
 % =============================================================
 
